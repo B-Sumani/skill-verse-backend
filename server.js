@@ -133,10 +133,11 @@ io.on('connection', (socket) => {
 // Make io available to routes
 app.set('io', io);
 
-const PORT = config.port;
+const PORT = process.env.PORT || 10000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running on ${HOST}:${PORT}`);
   console.log(`📡 Environment: ${config.nodeEnv}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/api/health`);
   console.log(`⚡ Algorand API: http://localhost:${PORT}/api/algorand`);
